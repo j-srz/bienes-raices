@@ -4,6 +4,7 @@
 .footer {
   background: v.$grisOscuro;
   padding: calc(v.$separacion / 2) 0;
+  margin-bottom: 0;
 
   .contenedor-footer {
     padding-top: calc(v.$separacion / 2);

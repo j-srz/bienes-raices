@@ -34,4 +34,11 @@
     margin-top: calc(v.$separacion / 2);
     display: $display;
     border-radius: 5px;
+    border: none;
+
+
+    &:hover {
+        background: darken($bgColor,5);
+        cursor: pointer;
+    }
 }
