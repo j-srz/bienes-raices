@@ -1,31 +1,81 @@
-@use '../base/mixins' as m;
-@use '../base/variables' as v;
+@use "../base/mixins" as m;
+@use "../base/variables" as v;
 
-.barra {
-    display: flex;
-    flex-direction: column;
-    padding-top: 3rem;
+.derecha {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include m.tablet {
+    align-items: flex-end;
+  }
+
+  .dark-mode-boton {
+    width: 5rem;
+    margin: 3rem 0;
+    filter: invert(100%);
+
+    &:hover {
+      cursor: pointer;
+    }
 
     @include m.tablet {
-        flex-direction: row;
-        justify-content: space-between;
+      margin-top: 0;
     }
+  }
 }
 
+.barra {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  align-items: center;
+
+  @include m.tablet {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
 
 .navegacion {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
 
-    @include m.tablet {
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-    }
+  @include m.tablet {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
 
-    a {
-        color: v.$blanco;
-        text-decoration: none;
-        font-size: 2.2rem;
-        display: block;
-        text-align: center;
-    }
+    gap: 2rem;
+    align-items: center;
+  }
+
+  a {
+    color: v.$blanco;
+    text-decoration: none;
+    font-size: 2.2rem;
+    display: block;
+    text-align: center;
+  }
+}
+
+// Meno de hamburguesa
+
+.mobile-menu {
+  @include m.tablet {
+    display: none;
+  }
+
+  img {
+    width: 5rem;
+  }
+}
+
+.mostrar {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0.3s ease-in-out, opacity 0.5s linear, height 0.5s linear;
+  height: auto;
 }

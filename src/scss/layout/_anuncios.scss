@@ -11,6 +11,7 @@
     background: lighten($color: v.$gris, $amount: 5);
     border: 1px solid v.$grisOscuro;
     border-radius: 10px;
+    margin-bottom: 2rem;
 
     .contenido-anuncio {
         padding: 2rem;
