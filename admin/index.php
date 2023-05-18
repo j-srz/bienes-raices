@@ -1,5 +1,16 @@
 <?php
 
+require '../includes/funciones.php';
+$auth = estaAutenticado();
+
+
+
+if(!$auth) {
+  header('Location: /bienesraices/index.php');
+}
+
+
+
 // echo '<pre>';
 // var_dump($_POST);
 // echo '</pre>';
@@ -38,18 +49,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // ELIMINAR PROPIEDAD
     $query = "DELETE FROM propiedades WHERE id = $id";
-    
+
     $resultado = mysqli_query($db, $query);
 
     if ($resultado) {
       header('location: /bienesraices/admin/index.php?resultado=3');
     }
-
   }
-
 }
 
-require '../includes/funciones.php';
+
 incluirTemplate('header');
 ?>
 
@@ -88,7 +97,7 @@ incluirTemplate('header');
           <td>
             <form method="POST">
 
-            <input type="hidden" name="id" value="<?php echo $propiedad['id'] ?>">
+              <input type="hidden" name="id" value="<?php echo $propiedad['id'] ?>">
               <input type="submit" class="btn btn-danger" value="Eliminar">
             </form>
             <a href="propiedades/actualizar.php?id=<?php echo $propiedad['id'] ?>" class="btn btn-primary">Actualizar</a>
