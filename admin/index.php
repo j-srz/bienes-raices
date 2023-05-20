@@ -1,31 +1,15 @@
 <?php
 
-require '../includes/funciones.php';
-$auth = estaAutenticado();
+require '../includes/app.php';
+estaAutenticado();
+
+use App\Propiedad;
 
 
-
-if(!$auth) {
-  header('Location: /bienesraices/index.php');
-}
+// Imp metodo para op las propiedades
+$propiedades = Propiedad::all();
 
 
-
-// echo '<pre>';
-// var_dump($_POST);
-// echo '</pre>';
-
-// Importar conexion
-require '../includes/config/database.php';
-$db = conectarDB();
-// Escribir el query
-$query = 'SELECT * FROM propiedades';
-
-
-// Consultar DB
-$resultadoConsulta = mysqli_query($db, $query);
-
-// Cerrar conexion
 
 $resultado = $_GET['resultado'] ?? null;
 
@@ -88,22 +72,22 @@ incluirTemplate('header');
 
     <tbody class="table-group-divider">
 
-      <?php while ($propiedad = mysqli_fetch_assoc($resultadoConsulta)) : ?>
+      <?php foreach ($propiedades as $propiedad): ?>
         <tr>
-          <td scope='row'><?php echo $propiedad['id'] ?></td>
-          <td><?php echo $propiedad['titulo'] ?></td>
-          <td><img class="img-table" style="height: 100px; width: auto;" src="../images/<?php echo $propiedad['imagen'] ?>"></td>
-          <td>$<?php echo $propiedad['precio'] ?></td>
+          <td scope='row'><?php echo $propiedad->id ?></td>
+          <td><?php echo $propiedad->titulo ?></td>
+          <td><img class="img-table" style="height: 100px; width: auto;" src="../images/<?php echo $propiedad->imagen ?>"></td>
+          <td>$<?php echo $propiedad->precio ?></td>
           <td>
             <form method="POST">
 
-              <input type="hidden" name="id" value="<?php echo $propiedad['id'] ?>">
+              <input type="hidden" name="id" value="<?php echo $propiedad->id ?>">
               <input type="submit" class="btn btn-danger" value="Eliminar">
             </form>
-            <a href="propiedades/actualizar.php?id=<?php echo $propiedad['id'] ?>" class="btn btn-primary">Actualizar</a>
+            <a href="propiedades/actualizar.php?id=<?php echo $propiedad->id ?>" class="btn btn-primary">Actualizar</a>
           </td>
         </tr>
-      <?php endwhile; ?>
+      <?php endforeach; ?>
 
 
 
