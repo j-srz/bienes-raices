@@ -1,15 +1,16 @@
 <?php
 
-require '../../includes/funciones.php';
+require '../../includes/app.php';
+
+use App\Propiedad;
+
+
+
 $auth = estaAutenticado();
 
-if(!$auth) {
-  header('Location: /bienesraices/index.php');
-}
 
 
-// DB
-require '../../includes/config/database.php';
+
 $db = conectarDB();
 
 // Consultar vendedores 
@@ -31,18 +32,19 @@ $descripcion = '';
 $habitaciones = '';
 $wc = '';
 $estacionamiento = '';
-$vendedores_id = '';
+$vendedores_id = ''; 
+
+
 $creado = date('Y/m/d');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // echo "<pre>";
-  // var_dump($_POST);
-  // echo "</pre>";
-  // echo "<pre>";
-  // var_dump($_FILES);
-  // echo "</pre>";
 
-  // exit;
+
+  $propiedad = new Propiedad($_POST);
+
+  $propiedad->guardar();
+
+  debuguear($propiedad);
 
   //! NUNCA CONFIAR EN LOS USUARIOS 
 
@@ -199,7 +201,7 @@ incluirTemplate('header');
     <fieldset>
       <legend>Vendedor</legend>
 
-      <select name="vendedor">
+      <select name="vendedores_id">
         <option value="">-- Seleccione --</option>
         <?php while ($vendedor = mysqli_fetch_assoc($resultado)) : ?>
           <option <?php echo $vendedores_id === $vendedor['id'] ? 'selected' : ''; ?> value="<?php echo $vendedor['id']; ?>"><?php echo $vendedor['nombre'] . " " . $vendedor['apellido']; ?></option>

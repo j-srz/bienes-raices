@@ -1,5 +1,5 @@
 <?php
-require './includes/funciones.php';
+require './includes/app.php';
 incluirTemplate('header');
 
 
@@ -11,8 +11,6 @@ $id = filter_var($id, FILTER_VALIDATE_INT);
 
 
 
-// Importar db
-require __DIR__ . '/includes/config/database.php';
 
 $db = conectarDB();
 

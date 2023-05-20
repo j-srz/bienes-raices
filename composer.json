@@ -1,0 +1,21 @@
+{
+    "name": "danon/bienesraices",
+    "description": "Creaando un proyecto con POO",
+    "autoload": {
+        "psr-4": {
+            "Danon\\Bienesraices\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jesus",
+            "email": "jesucal68@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "./classes"
+        }
+    }
+}
